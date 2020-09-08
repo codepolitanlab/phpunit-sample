@@ -4,7 +4,8 @@ use PHPUnit\Framework\TestCase;
 
 class UserTest extends TestCase
 {
-    public function testGetFirstName()
+    /** @test */
+    public function get_first_name()
     {
         $user = new \App\Models\User;
 
@@ -20,5 +21,14 @@ class UserTest extends TestCase
         $user->setLastName('Sembiring');
 
         $this->assertEquals($user->getLastName(), 'Sembiring');
+    }
+
+    public function testGetFullName()
+    {
+        $user = new \App\Models\User;
+        $user->setFirstName('Hakim');
+        $user->setLastName('Sembiring');
+
+        $this->assertEquals($user->getFullName(), 'Hakim Sembiring');
     }
 }
