@@ -4,31 +4,35 @@ use PHPUnit\Framework\TestCase;
 
 class UserTest extends TestCase
 {
+    protected $user;
+
+    protected function setUp(): void
+    {
+        // var_dump('1');
+        $this->user = new \App\Models\User;
+    }
+
     /** @test */
     public function get_first_name()
     {
-        $user = new \App\Models\User;
 
-        $user->setFirstName('Hakim');
+        $this->user->setFirstName('Hakim');
 
-        $this->assertEquals($user->getFirstName(), 'Hakim');
+        $this->assertEquals($this->user->getFirstName(), 'Hakim');
     }
 
     public function testGetLastname()
     {
-        $user = new \App\Models\User;
+        $this->user->setLastName('Sembiring');
 
-        $user->setLastName('Sembiring');
-
-        $this->assertEquals($user->getLastName(), 'Sembiring');
+        $this->assertEquals($this->user->getLastName(), 'Sembiring');
     }
 
     public function testGetFullName()
     {
-        $user = new \App\Models\User;
-        $user->setFirstName('Hakim');
-        $user->setLastName('Sembiring');
+        $this->user->setFirstName('Hakim');
+        $this->user->setLastName('Sembiring');
 
-        $this->assertEquals($user->getFullName(), 'Hakim Sembiring');
+        $this->assertEquals($this->user->getFullName(), 'Hakim Sembiring');
     }
 }
